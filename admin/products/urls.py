@@ -1,10 +1,9 @@
 """
     products URL Configuration
 """
-from django.contrib import admin
 from django.urls import path
 
-from .views import ProductViewSet, UserAPIView
+from products.viewcontroller.views import ProductViewSet, UserAPIView
 
 urlpatterns = [
     path('products', ProductViewSet.as_view({

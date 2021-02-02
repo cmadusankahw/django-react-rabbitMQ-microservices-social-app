@@ -1,7 +1,8 @@
-# amqps://qenxroax:***@barnacle.rmq.cloudamqp.com/qenxroax
 
+import json
 import pika
 
+from configs.constants import main_queue
 from configs.keys import rabbit_MQ_pass
 
 params = pika.URLParameters(f'amqps://qenxroax:{rabbit_MQ_pass}@barnacle.rmq.cloudamqp.com/qenxroax')
@@ -12,4 +13,5 @@ channel = connection.channel()
 
 
 def publish(method, body):
-    channel.basic_publish(exchange='', routing_key='main', body='hello main')
+    properties = pika.BasicProperties(method)
+    channel.basic_publish(exchange='', routing_key=main_queue, body=json.dumps(body), properties=properties)
