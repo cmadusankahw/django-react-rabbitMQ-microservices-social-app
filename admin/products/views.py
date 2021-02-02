@@ -4,8 +4,8 @@ from rest_framework.views import APIView
 import random
 
 from configs.constants import event_created, event_updated, event_deleted
-from products.model.models import Product, User
-from products.producer.producer import publish
+from products.models import Product, User
+from products.producer import publish
 from products.serializers import ProductSerializer
 
 

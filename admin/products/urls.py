@@ -3,7 +3,7 @@
 """
 from django.urls import path
 
-from products.viewcontroller.views import ProductViewSet, UserAPIView
+from products.views import ProductViewSet, UserAPIView
 
 urlpatterns = [
     path('products', ProductViewSet.as_view({

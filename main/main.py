@@ -1,12 +1,13 @@
 import requests
-from flask import Flask, jsonify
+from flask import Flask, jsonify, abort
 from flask_cors import CORS
 from flask_sqlalchemy import SQLAlchemy
 from dataclasses import dataclass
 from sqlalchemy import UniqueConstraint
 
-from configs.constants import service_host, user_API, API_prefix
+from configs.constants import service_host, user_API, API_prefix, event_liked
 from configs.keys import mysql_user, mysql_pass, mysql_host, mysql_db_main
+from producer import publish
 
 app = Flask(__name__)
 app.config["SQLALCHEMY_DATABASE_URI"] = f'mysql://{mysql_user}:{mysql_pass}@{mysql_host}/{mysql_db_main}'
@@ -42,7 +43,20 @@ def index():
 @app.route(f'{API_prefix}<int:id>/like', methods=['POST'])
 def like(id):
     req = requests.get(user_API)
-    return jsonify(req.json())
+    json = req.json()
+
+    try:
+        productUser = ProductUser(user_id=json['id'], product_id=id)
+        db.session.add(productUser)
+        db.session.commit()
+
+        publish(event_liked, id)
+    except:
+        abort(400, 'You already liked this product')
+
+    return jsonify({
+        'message': 'success'
+    })
 
 
 if __name__ == '__main__':
