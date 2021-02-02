@@ -13,6 +13,8 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
+from configs.keys import mysql_db_admin, mysql_user, mysql_pass, mysql_host, mysql_port
+
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 
@@ -80,11 +82,11 @@ WSGI_APPLICATION = 'admin.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'admin',
-        'USER': 'root',
-        'PASSWORD': 'root',
-        'HOST': 'db',
-        'PORT': '3306',
+        'NAME': mysql_db_admin,
+        'USER': mysql_user,
+        'PASSWORD': mysql_pass,
+        'HOST': mysql_host,
+        'PORT': mysql_port,
     }
 }
 

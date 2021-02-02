@@ -16,7 +16,9 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 
+from configs.constants import API_prefix
+
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('api/', include('products.urls'))  # connecting products URL routing
+    path(API_prefix, include('products.urls'))  # connecting products URL routing
 ]
