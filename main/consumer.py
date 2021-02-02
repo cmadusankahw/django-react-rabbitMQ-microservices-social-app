@@ -11,15 +11,15 @@ connection = pika.BlockingConnection(params)
 
 channel = connection.channel()
 
-channel.queue_declare(queue='admin')
+channel.queue_declare(queue='main')
 
 
 def callback(ch, method, properties, body):
-    logging.info('Received in admin')
+    logging.info('Received in main')
     logging.info(body)
 
 
-channel.basic_consume(queue='admin', on_message_callback=callback)
+channel.basic_consume(queue='main', on_message_callback=callback)
 
 logging.info('Started Consuming')
 

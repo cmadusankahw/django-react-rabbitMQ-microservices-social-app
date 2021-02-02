@@ -13,7 +13,7 @@ class ProductViewSet(viewsets.ViewSet):
     def list(self, request):  # api/products
         products = Product.objects.all()
         serializer = ProductSerializer(products, many=True)
-        publish()
+        publish('','')  # publishing to RabbitMQ
         return Response(serializer.data)
 
     def create(self, request):  # /api/products
@@ -39,10 +39,11 @@ class ProductViewSet(viewsets.ViewSet):
         product.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
 
+
 class UserAPIView(APIView):
     def get(self, _):
         users = User.objects.all()
         user = random.choice(users)
         return Response({
-            'id':user.id
+            'id': user.id
         })
