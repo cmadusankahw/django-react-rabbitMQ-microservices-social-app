@@ -1,5 +1,5 @@
 # API calls
-user_API = 'http://localhost:8000/api/user'
+user_API = 'http://172.17.0.1:8000/api/user'
 
 API_prefix = '/api/products/'
 
@@ -12,3 +12,5 @@ main_queue = 'main'
 event_created = 'product_created'
 event_updated = 'product_updated'
 event_deleted = 'product_deleted'
+
+event_liked = 'products_liked'
