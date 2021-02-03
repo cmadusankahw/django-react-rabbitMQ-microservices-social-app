@@ -5,7 +5,7 @@ import pika
 from configs.constants import main_queue
 from configs.keys import rabbit_MQ_pass
 
-params = pika.URLParameters(f'amqps://qenxroax:{rabbit_MQ_pass}@barnacle.rmq.cloudamqp.com/qenxroax')
+params = pika.URLParameters(rabbit_MQ_pass)
 
 connection = pika.BlockingConnection(params)
 
