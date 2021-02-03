@@ -15,11 +15,11 @@ class DayViewSet(viewsets.ViewSet):
         return Response(serializer.data)
 
     def retrieveByStoreId(self, request, id=None):  # /api/sales/store/<str:id>
-        sales = Day.objects.get(store_id=id)
-        serializer = DaySerializer(sales)
+        sales = Day.objects.filter(store_id=id)
+        serializer = DaySerializer(sales, many=True)
         return Response(serializer.data)
 
     def retrieveByCustId(self, request, id=None):  # /api/sales/cust/<str:id>
-        sales = Day.objects.get(cust_id=id)
-        serializer = DaySerializer(sales)
+        sales = Day.objects.filter(cust_id=id)
+        serializer = DaySerializer(sales, many=True)
         return Response(serializer.data)
