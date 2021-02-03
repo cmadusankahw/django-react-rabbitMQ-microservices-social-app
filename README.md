@@ -1,4 +1,4 @@
-# django-react-rabbitMQ-microservices-social-app
+# django-react-rabbitMQ-microservices-product-store
 
 This project is developed with python Django/Flask micro-services communicating through a RabbitMQ Event Bus. Frontend was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
