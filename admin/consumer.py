@@ -15,7 +15,7 @@ from products.models import Product
 
 logging.basicConfig(format='%(levelname)s:%(message)s', level=logging.INFO)
 
-params = pika.URLParameters(f'amqps://qenxroax:{rabbit_MQ_pass}@barnacle.rmq.cloudamqp.com/qenxroax')
+params = pika.URLParameters(rabbit_MQ_pass)
 
 connection = pika.BlockingConnection(params)
 
